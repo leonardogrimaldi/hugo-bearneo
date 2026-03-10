@@ -1,0 +1,9 @@
+<h2>I miei post più recenti</h2>
+<ul>
+  {{ range first 5 (where .Site.RegularPages "Type" "blog") }}
+    <li>
+      <a href="{{ .Permalink }}">{{ .Title }}</a>
+      <span class="date">{{ .Date | time.Format ":date_medium" }}</span>
+    </li>
+  {{ end }}
+</ul>
