@@ -120,4 +120,9 @@
 </div>
 {{ end }}
 
+{{/* Load Mermaid only when this page contains Mermaid diagrams. */}}
+{{ if .Params.mermaid }}
+{{ partial "mermaid.html" . }}
+{{ end }}
+
 {{ end }}
