@@ -41,7 +41,9 @@
   let hasUpvoted = false;
   let upvoteBtn;
   let upvoteCount;
-  const entity = {{ .RelPermalink | jsonify | safeJS }};
+  {{ $kudosEntity := strings.Trim .RelPermalink "/" }}
+  {{ if eq $kudosEntity "" }}{{ $kudosEntity = "home" }}{{ end }}
+  const entity = {{ replace $kudosEntity "/" ":" | jsonify | safeJS }};
   const upvoteBaseUrl = {{ .Site.Params.upvoteURL | jsonify | safeJS }}.replace(/\/+$/, '');
 
   function upvoteUrl(action = '') {

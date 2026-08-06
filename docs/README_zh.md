@@ -59,7 +59,7 @@
 
 主题提供 Bear Blog 风格的文章点赞功能，后端由 [Kudos](https://github.com/puinoib/kudos) 提供。先部署基于 Cloudflare Workers + D1 的 Kudos 服务，再将其 URL 配置为点赞接口。
 
-Kudos 使用 URL 编码后的页面路径作为实体标识。本主题使用每个页面的相对永久链接，因此更换站点域名不会重置文章的点赞数。
+Kudos 会将点赞数关联到对应页面，因此更换站点域名不会重置文章的点赞数。
 
 然后在 Hugo 博客配置文件 `hugo.toml` 中添加如下配置:
 

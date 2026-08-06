@@ -59,7 +59,7 @@ For a current & working demo of this theme, please check out [https://rokcso.com
 
 This theme provides Bear Blog-style upvotes, powered by [Kudos](https://github.com/puinoib/kudos), a Cloudflare Workers + D1 service. Deploy Kudos first, then configure its URL as the Upvote endpoint.
 
-Kudos uses one URL-encoded page path as the entity key. This theme uses each page's relative permalink, so changing the site's domain does not reset its upvote count.
+Kudos associates each upvote count with its page, so changing the site's domain does not reset an article's upvote count.
 
 Then add the following configuration to the Hugo blog configuration file `hugo.toml`:
 
