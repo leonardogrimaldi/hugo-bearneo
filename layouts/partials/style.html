@@ -74,6 +74,7 @@
 
     a:hover {
         text-decoration: underline;
+        text-underline-offset: 3px;
     }
 
     .title {
@@ -104,6 +105,18 @@
 
     content {
         line-height: 1.6;
+    }
+
+    content ul,
+    content ol {
+        padding-left: 1.5em;
+    }
+
+    content ul ul,
+    content ol ol,
+    content ul ol,
+    content ol ul {
+        padding-left: 1.2em;
     }
 
     table {
