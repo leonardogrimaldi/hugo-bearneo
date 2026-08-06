@@ -164,7 +164,7 @@ Set this option to open external HTTP(S) links in a new tab. Internal links cont
 The hugo-bearneo natively supports the "Scheme III: RSS Tag" mentioned in my article. You only need to add the following configuration to the Hugo blog configuration file `hugo.toml`:
 
 ```toml
-[params]
+[params.RSS]
     followFeedId = "00000000000000000"
     followUserId = "00000000000000000"
 ```

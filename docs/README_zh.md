@@ -164,7 +164,7 @@ flowchart LR
 而 hugo-bearneo 原生支持了我文章中提到的「方案三：RSS Tag」，只需要在 Hugo 博客配置文件 `hugo.toml` 中添加如下配置：
 
 ```toml
-[params]
+[params.RSS]
     followFeedId = "00000000000000000"
     followUserId = "00000000000000000"
 ```
