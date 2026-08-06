@@ -83,10 +83,10 @@ ignoreErrors = ["error-disable-taxonomy"]
   # Article page whether enabled image zoom?
   imageZoom = true
 
-  # Post Upvote API 的配置，详见 https://github.com/rokcso/post-upvote-api
-  # Post Upvote API configuration, see https://github.com/rokcso/post-upvote-api for details.
-  upvote = false
-  upvoteURL = "https://post-upvote-api.example.com/"
+  # Kudos service configuration, see https://github.com/puinoib/kudos for details.
+  # Kudos 服务配置，详见 https://github.com/puinoib/kudos。
+  kudos = false
+  kudosURL = "https://kudos.example.com"
 
   [params.footer]
     # 是否隐藏版权说明文案，若不配置，默认 false

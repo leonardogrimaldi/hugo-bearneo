@@ -14,7 +14,7 @@
         --link-color: #0066cc;
         --link-visited-color: #551a8b;
         --border-color: #d0d7de;
-        --upvoted-color: #fa8072;
+        --kudos-given-color: #fa8072;
     }
 
     @media (prefers-color-scheme: dark) {
@@ -28,7 +28,7 @@
             --link-color: #6da6ff;
             --link-visited-color: #b388ff;
             --border-color: #30363d;
-            --upvoted-color: #ff6b6b;
+            --kudos-given-color: #ff6b6b;
         }
     }
 
@@ -330,8 +330,8 @@
         background-color: var(--text-color-primary);
     }
 
-    /* upvote button style */
-    button.upvote-btn {
+    /* Kudos button style */
+    button.kudos-btn {
         margin: 0;
         padding: 0;
         border: none;
@@ -343,11 +343,11 @@
         color: var(--text-color-primary);
     }
 
-    button.upvoted {
-        color: var(--upvoted-color);
+    button.has-kudos {
+        color: var(--kudos-given-color);
     }
 
-    span.upvote-count {
+    span.kudos-count {
         margin-top: -4px;
         font-size: smaller;
     }

@@ -18,7 +18,7 @@
 - [✨ 功能](#-功能)
 - [🐻 示例](#-示例)
 - [📑 使用手册](#-使用手册)
-    - [点赞文章](#点赞文章)
+    - [发送 Kudos](#发送-kudos)
     - [搜索文章](#搜索文章)
     - [文章列表页按年份分组](#文章列表页按年份分组)
     - [显示目录](#显示目录)
@@ -31,7 +31,7 @@
 
 在 [Hugo Bear Blog][hugo-bearblog] 的基础上，增加了以下功能：
 
-- [x] 点赞文章（亮点功能 👍，复刻自 Bear Blog）
+- [x] 发送 Kudos（亮点功能 👍，灵感来自 Bear Blog）
 - [x] 搜索文章
 - [x] 文章列表页按年份分组
 - [x] 显示目录
@@ -51,21 +51,21 @@
 
 ## 📑 使用手册
 
-### 点赞文章
+### 发送 Kudos
 
-首先参考 Post Upvote API 的 [README](https://github.com/rokcso/post-upvote-api) 文档，完成后端服务部署。
+首先部署 [Kudos](https://github.com/puinoib/kudos)，这是一个基于 Cloudflare Workers + D1 的轻量点赞服务。
 
-> 使用 Cloudflare Workers + KV，部署简便且免费。
+Kudos 使用 URL 编码后的页面路径作为实体标识。本主题使用每个页面的相对永久链接，因此更换站点域名不会重置 Kudos。
 
 然后在 Hugo 博客配置文件 `hugo.toml` 中添加如下配置:
 
 ```toml
 [params]
-    upvote = true
-    upvoteURL = "刚刚部署的 Worker 的域名/"
+    kudos = true
+    kudosURL = "https://kudos.example.com"
 ```
 
-注意：URL 末尾的 `/` 一定要加上！
+`kudosURL` 末尾可以带或不带 `/`。
 
 ### 搜索文章
 
