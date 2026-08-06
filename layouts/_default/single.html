@@ -22,30 +22,30 @@
   {{ end }}
 </p>
 
-{{ $kudosEnabled := .Site.Params.kudos }}
-{{ if isset .Params "kudos" }}{{ $kudosEnabled = .Params.kudos }}{{ end }}
-{{ if and $kudosEnabled .Site.Params.kudosURL }}
-<div class="kudos-container">
-<small class="kudos">
-  <button class="kudos-btn" id="kudos-btn" aria-pressed="false">
+{{ $upvoteEnabled := .Site.Params.upvote }}
+{{ if isset .Params "upvote" }}{{ $upvoteEnabled = .Params.upvote }}{{ end }}
+{{ if and $upvoteEnabled .Site.Params.upvoteURL }}
+<div class="upvote-container">
+<small class="upvote">
+  <button class="upvote-btn" id="upvote-btn" aria-pressed="false">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1">
     <polyline points="17 11 12 6 7 11"></polyline>
     <polyline points="17 18 12 13 7 18"></polyline>
     </svg>
-    <span class="kudos-count" id="kudos-count">0</span>
+    <span class="upvote-count" id="upvote-count">0</span>
   </button>
 </small>
 </div>
 
 <script>
-  let hasKudos = false;
-  let kudosBtn;
-  let kudosCount;
+  let hasUpvoted = false;
+  let upvoteBtn;
+  let upvoteCount;
   const entity = {{ .RelPermalink | jsonify | safeJS }};
-  const kudosBaseUrl = {{ .Site.Params.kudosURL | jsonify | safeJS }}.replace(/\/+$/, '');
+  const upvoteBaseUrl = {{ .Site.Params.upvoteURL | jsonify | safeJS }}.replace(/\/+$/, '');
 
-  function kudosUrl(action = '') {
-    return `${kudosBaseUrl}/${encodeURIComponent(entity)}${action}`;
+  function upvoteUrl(action = '') {
+    return `${upvoteBaseUrl}/${encodeURIComponent(entity)}${action}`;
   }
 
   async function requestKudos(url, options) {
@@ -62,51 +62,51 @@
     return data;
   }
 
-  function renderKudos({ count, hasKudos: nextHasKudos }) {
-    kudosCount.innerText = count;
-    hasKudos = nextHasKudos;
-    kudosBtn.classList.toggle('has-kudos', hasKudos);
-    kudosBtn.setAttribute('aria-pressed', String(hasKudos));
+  function renderUpvote({ count, hasKudos }) {
+    upvoteCount.innerText = count;
+    hasUpvoted = hasKudos;
+    upvoteBtn.classList.toggle('upvoted', hasUpvoted);
+    upvoteBtn.setAttribute('aria-pressed', String(hasUpvoted));
   }
 
   // Read the public count and this visitor's state separately so the count
   // remains cacheable at the Kudos API.
   document.addEventListener('DOMContentLoaded', function() {
-    kudosBtn = document.getElementById('kudos-btn');
-    kudosCount = document.getElementById('kudos-count');
-    loadKudos();
+    upvoteBtn = document.getElementById('upvote-btn');
+    upvoteCount = document.getElementById('upvote-count');
+    loadUpvote();
 
-    kudosBtn.addEventListener('click', giveKudos);
+    upvoteBtn.addEventListener('click', giveUpvote);
   });
 
-  async function loadKudos() {
+  async function loadUpvote() {
     try {
       const [count, status] = await Promise.all([
-        requestKudos(kudosUrl()),
-        requestKudos(kudosUrl('/kudos')),
+        requestKudos(upvoteUrl()),
+        requestKudos(upvoteUrl('/kudos')),
       ]);
-      renderKudos({ count: count.count, hasKudos: status.hasKudos });
+      renderUpvote({ count: count.count, hasKudos: status.hasKudos });
     } catch (error) {
-      console.error('Failed to load kudos:', error);
+      console.error('Failed to load upvote:', error);
     }
   }
 
-  async function giveKudos() {
-    if (hasKudos) {
+  async function giveUpvote() {
+    if (hasUpvoted) {
       return;
     }
 
-    kudosBtn.disabled = true;
+    upvoteBtn.disabled = true;
 
     try {
-      const state = await requestKudos(kudosUrl('/kudos'), {
+      const state = await requestKudos(upvoteUrl('/kudos'), {
         method: 'POST',
       });
-      renderKudos(state);
+      renderUpvote(state);
     } catch (error) {
-      console.error('Failed to give kudos:', error);
+      console.error('Failed to give upvote:', error);
     } finally {
-      kudosBtn.disabled = false;
+      upvoteBtn.disabled = false;
     }
   }
 </script>

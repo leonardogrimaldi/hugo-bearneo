@@ -18,7 +18,7 @@ Transplanted from [Hugo Bear Blog][hugo-bearblog], because the original author c
 - [✨ Features](#-features)
 - [🐻 Demo](#-demo)
 - [📑 User Manual](#-user-manual)
-  - [Give kudos](#give-kudos)
+  - [Upvote posts](#upvote-posts)
   - [Search post](#search-post)
   - [Post list page grouped by year](#post-list-page-grouped-by-year)
   - [Table of contents](#table-of-contents)
@@ -33,7 +33,7 @@ Transplanted from [Hugo Bear Blog][hugo-bearblog], because the original author c
 
 Based on [Hugo Bear Blog][hugo-bearblog], the following features have been added:
 
-- [x] Give kudos (Highlight feature 👍, inspired by Bear Blog)
+- [x] Upvote posts (Highlight feature 👍, inspired by Bear Blog and powered by Kudos)
 - [x] Search post
 - [x] Post list page grouped by year
 - [x] Table of contents
@@ -55,21 +55,21 @@ For a current & working demo of this theme, please check out [https://rokcso.com
 
 ## 📑 User Manual
 
-### Give kudos
+### Upvote posts
 
-First, deploy [Kudos](https://github.com/puinoib/kudos), a Cloudflare Workers + D1 service.
+This theme provides Bear Blog-style upvotes, powered by [Kudos](https://github.com/puinoib/kudos), a Cloudflare Workers + D1 service. Deploy Kudos first, then configure its URL as the Upvote endpoint.
 
-Kudos uses one URL-encoded page path as the entity key. This theme uses each page's relative permalink, so changing the site's domain does not reset its kudos.
+Kudos uses one URL-encoded page path as the entity key. This theme uses each page's relative permalink, so changing the site's domain does not reset its upvote count.
 
 Then add the following configuration to the Hugo blog configuration file `hugo.toml`:
 
 ```toml
 [params]
-    kudos = true
-    kudosURL = "https://kudos.example.com"
+    upvote = true
+    upvoteURL = "https://kudos.example.com"
 ```
 
-`kudosURL` may include or omit a trailing `/`.
+`upvoteURL` may include or omit a trailing `/`.
 
 ### Search post
 

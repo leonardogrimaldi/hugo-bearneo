@@ -18,7 +18,7 @@
 - [✨ 功能](#-功能)
 - [🐻 示例](#-示例)
 - [📑 使用手册](#-使用手册)
-    - [发送 Kudos](#发送-kudos)
+    - [文章点赞](#文章点赞)
     - [搜索文章](#搜索文章)
     - [文章列表页按年份分组](#文章列表页按年份分组)
     - [显示目录](#显示目录)
@@ -33,7 +33,7 @@
 
 在 [Hugo Bear Blog][hugo-bearblog] 的基础上，增加了以下功能：
 
-- [x] 发送 Kudos（亮点功能 👍，灵感来自 Bear Blog）
+- [x] 文章点赞（亮点功能 👍，灵感来自 Bear Blog，由 Kudos 提供后端支持）
 - [x] 搜索文章
 - [x] 文章列表页按年份分组
 - [x] 显示目录
@@ -55,21 +55,21 @@
 
 ## 📑 使用手册
 
-### 发送 Kudos
+### 文章点赞
 
-首先部署 [Kudos](https://github.com/puinoib/kudos)，这是一个基于 Cloudflare Workers + D1 的轻量点赞服务。
+主题提供 Bear Blog 风格的文章点赞功能，后端由 [Kudos](https://github.com/puinoib/kudos) 提供。先部署基于 Cloudflare Workers + D1 的 Kudos 服务，再将其 URL 配置为点赞接口。
 
-Kudos 使用 URL 编码后的页面路径作为实体标识。本主题使用每个页面的相对永久链接，因此更换站点域名不会重置 Kudos。
+Kudos 使用 URL 编码后的页面路径作为实体标识。本主题使用每个页面的相对永久链接，因此更换站点域名不会重置文章的点赞数。
 
 然后在 Hugo 博客配置文件 `hugo.toml` 中添加如下配置:
 
 ```toml
 [params]
-    kudos = true
-    kudosURL = "https://kudos.example.com"
+    upvote = true
+    upvoteURL = "https://kudos.example.com"
 ```
 
-`kudosURL` 末尾可以带或不带 `/`。
+`upvoteURL` 末尾可以带或不带 `/`。
 
 ### 搜索文章
 
