@@ -17,6 +17,7 @@
 
 - [✨ 功能](#-功能)
 - [🐻 示例](#-示例)
+- [🚀 快速开始](#-快速开始)
 - [📑 使用手册](#-使用手册)
     - [文章点赞](#文章点赞)
     - [搜索文章](#搜索文章)
@@ -52,6 +53,28 @@
 ## 🐻 示例
 
 要查看此主题的最新状态和实际演示，请访问 [https://rokcso.com/][rokcso-blog] 🎯。
+
+## 🚀 快速开始
+
+此主题需要 Hugo v0.110.0 或更高版本。在 Hugo 站点根目录中，将主题克隆到 `themes` 目录：
+
+```bash
+git clone https://github.com/rokcso/hugo-bearneo.git themes/hugo-bearneo
+```
+
+在站点的 `hugo.toml` 中配置主题名称：
+
+```toml
+theme = "hugo-bearneo"
+```
+
+启动本地预览服务器：
+
+```bash
+hugo server
+```
+
+下方的配置项可用于启用文章搜索、目录、图片缩放和点赞等功能。
 
 ## 📑 使用手册
 

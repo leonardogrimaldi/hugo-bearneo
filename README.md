@@ -17,6 +17,7 @@ Transplanted from [Hugo Bear Blog][hugo-bearblog], because the original author c
 
 - [✨ Features](#-features)
 - [🐻 Demo](#-demo)
+- [🚀 Quick start](#-quick-start)
 - [📑 User Manual](#-user-manual)
   - [Upvote posts](#upvote-posts)
   - [Search post](#search-post)
@@ -52,6 +53,28 @@ There are still some optimization items:
 ## 🐻 Demo
 
 For a current & working demo of this theme, please check out [https://rokcso.com/][rokcso-blog] 🎯.
+
+## 🚀 Quick start
+
+This theme requires Hugo v0.110.0 or later. From the root of your Hugo site, clone the theme into the `themes` directory:
+
+```bash
+git clone https://github.com/rokcso/hugo-bearneo.git themes/hugo-bearneo
+```
+
+Add the theme name to your site's `hugo.toml`:
+
+```toml
+theme = "hugo-bearneo"
+```
+
+Start the local server:
+
+```bash
+hugo server
+```
+
+See the options below to enable features such as post search, table of contents, image zoom, and upvotes.
 
 ## 📑 User Manual
 
