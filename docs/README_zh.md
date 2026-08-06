@@ -23,6 +23,8 @@
     - [文章列表页按年份分组](#文章列表页按年份分组)
     - [显示目录](#显示目录)
     - [图片缩放](#图片缩放)
+    - [Mermaid 图表](#mermaid-图表)
+    - [外部链接](#外部链接)
     - [Follow App Claim](#follow-app-claim)
 - [🎁 鸣谢](#-鸣谢)
 - [©️ License](#️-license)
@@ -36,6 +38,8 @@
 - [x] 文章列表页按年份分组
 - [x] 显示目录
 - [x] 图片缩放
+- [x] Mermaid 图表
+- [x] 外部链接处理
 - [x] Follow App Claim
 
 还有一些优化项：
@@ -103,6 +107,31 @@ Kudos 使用 URL 编码后的页面路径作为实体标识。本主题使用每
 ```toml
 [params]
     imageZoom = true
+```
+
+### Mermaid 图表
+
+在文章 front matter 中设置 `mermaid: true`，然后在 Markdown 内容中使用 Mermaid fenced code block。Mermaid JavaScript 只会在启用该选项的文章页加载。
+
+````markdown
+---
+mermaid: true
+---
+
+```mermaid
+flowchart LR
+  读者 --> 文章
+  文章 --> Kudos
+```
+````
+
+### 外部链接
+
+启用后，外部 HTTP(S) 链接会在新标签页打开，站内链接仍在当前标签页打开。无论是否启用，外部链接都会带有 `rel="noopener noreferrer"`。
+
+```toml
+[params]
+    externalLinksNewTab = true
 ```
 
 ### Follow App Claim

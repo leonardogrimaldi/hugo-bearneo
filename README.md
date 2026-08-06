@@ -23,6 +23,8 @@ Transplanted from [Hugo Bear Blog][hugo-bearblog], because the original author c
   - [Post list page grouped by year](#post-list-page-grouped-by-year)
   - [Table of contents](#table-of-contents)
   - [Image zoom](#image-zoom)
+  - [Mermaid diagrams](#mermaid-diagrams)
+  - [External links](#external-links)
   - [Follow App Claim](#follow-app-claim)
 - [🎁 Acknowledgments](#-acknowledgments)
 - [©️ License](#️-license)
@@ -36,6 +38,8 @@ Based on [Hugo Bear Blog][hugo-bearblog], the following features have been added
 - [x] Post list page grouped by year
 - [x] Table of contents
 - [x] Image zoom
+- [x] Mermaid diagrams
+- [x] External link handling
 - [x] Follow App Claim
 
 There are still some optimization items:
@@ -103,6 +107,31 @@ Add the following configuration to the Hugo blog configuration file `hugo.toml`:
 ```toml
 [params]
     imageZoom = true
+```
+
+### Mermaid diagrams
+
+Set `mermaid: true` in a page's front matter, then use a Mermaid fenced code block in its Markdown content. Mermaid JavaScript loads only on pages that opt in.
+
+````markdown
+---
+mermaid: true
+---
+
+```mermaid
+flowchart LR
+  Reader --> Article
+  Article --> Kudos
+```
+````
+
+### External links
+
+Set this option to open external HTTP(S) links in a new tab. Internal links continue to open in the current tab. External links receive `rel="noopener noreferrer"` in either mode.
+
+```toml
+[params]
+    externalLinksNewTab = true
 ```
 
 ### Follow App Claim
