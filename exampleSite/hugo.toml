@@ -86,10 +86,13 @@ ignoreErrors = ["error-disable-taxonomy"]
   # Article page whether enabled image zoom?
   imageZoom = true
 
-  # Post Upvote API 的配置，详见 https://github.com/rokcso/post-upvote-api
-  # Post Upvote API configuration, see https://github.com/rokcso/post-upvote-api for details.
+  # Whether external links open in a new tab.
+  externalLinksNewTab = false
+
+  # Bear Blog-style upvotes powered by Kudos: https://github.com/puinoib/kudos
+  # Bear Blog 风格的点赞功能由 Kudos 提供后端支持：https://github.com/puinoib/kudos
   upvote = false
-  upvoteURL = "https://post-upvote-api.example.com/"
+  upvoteURL = "https://kudos.example.com"
 
   [params.footer]
     # 是否隐藏版权说明文案，若不配置，默认 false

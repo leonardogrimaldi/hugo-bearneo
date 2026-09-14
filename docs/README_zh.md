@@ -17,12 +17,15 @@
 
 - [✨ 功能](#-功能)
 - [🐻 示例](#-示例)
+- [🚀 快速开始](#-快速开始)
 - [📑 使用手册](#-使用手册)
-    - [点赞文章](#点赞文章)
+    - [文章点赞](#文章点赞)
     - [搜索文章](#搜索文章)
     - [文章列表页按年份分组](#文章列表页按年份分组)
     - [显示目录](#显示目录)
     - [图片缩放](#图片缩放)
+    - [Mermaid 图表](#mermaid-图表)
+    - [外部链接](#外部链接)
     - [Follow App Claim](#follow-app-claim)
 - [🎁 鸣谢](#-鸣谢)
 - [©️ License](#️-license)
@@ -31,11 +34,13 @@
 
 在 [Hugo Bear Blog][hugo-bearblog] 的基础上，增加了以下功能：
 
-- [x] 点赞文章（亮点功能 👍，复刻自 Bear Blog）
+- [x] 文章点赞（亮点功能 👍，灵感来自 Bear Blog，由 Kudos 提供后端支持）
 - [x] 搜索文章
 - [x] 文章列表页按年份分组
 - [x] 显示目录
 - [x] 图片缩放
+- [x] Mermaid 图表
+- [x] 外部链接处理
 - [x] Follow App Claim
 
 还有一些优化项：
@@ -49,23 +54,45 @@
 
 要查看此主题的最新状态和实际演示，请访问 [https://rokcso.com/][rokcso-blog] 🎯。
 
+## 🚀 快速开始
+
+此主题需要 Hugo v0.110.0 或更高版本。在 Hugo 站点根目录中，将主题克隆到 `themes` 目录：
+
+```bash
+git clone https://github.com/rokcso/hugo-bearneo.git themes/hugo-bearneo
+```
+
+在站点的 `hugo.toml` 中配置主题名称：
+
+```toml
+theme = "hugo-bearneo"
+```
+
+启动本地预览服务器：
+
+```bash
+hugo server
+```
+
+下方的配置项可用于启用文章搜索、目录、图片缩放和点赞等功能。
+
 ## 📑 使用手册
 
-### 点赞文章
+### 文章点赞
 
-首先参考 Post Upvote API 的 [README](https://github.com/rokcso/post-upvote-api) 文档，完成后端服务部署。
+主题提供 Bear Blog 风格的文章点赞功能，后端由 [Kudos](https://github.com/puinoib/kudos) 提供。先部署基于 Cloudflare Workers + D1 的 Kudos 服务，再将其 URL 配置为点赞接口。
 
-> 使用 Cloudflare Workers + KV，部署简便且免费。
+Kudos 会将点赞数关联到对应页面，因此更换站点域名不会重置文章的点赞数。
 
 然后在 Hugo 博客配置文件 `hugo.toml` 中添加如下配置:
 
 ```toml
 [params]
     upvote = true
-    upvoteURL = "刚刚部署的 Worker 的域名/"
+    upvoteURL = "https://kudos.example.com"
 ```
 
-注意：URL 末尾的 `/` 一定要加上！
+`upvoteURL` 末尾可以带或不带 `/`。
 
 ### 搜索文章
 
@@ -105,6 +132,31 @@
     imageZoom = true
 ```
 
+### Mermaid 图表
+
+在文章 front matter 中设置 `mermaid: true`，然后在 Markdown 内容中使用 Mermaid fenced code block。Mermaid JavaScript 只会在启用该选项的文章页加载。
+
+````markdown
+---
+mermaid: true
+---
+
+```mermaid
+flowchart LR
+  读者 --> 文章
+  文章 --> Kudos
+```
+````
+
+### 外部链接
+
+启用后，外部 HTTP(S) 链接会在新标签页打开，站内链接仍在当前标签页打开。无论是否启用，外部链接都会带有 `rel="noopener noreferrer"`。
+
+```toml
+[params]
+    externalLinksNewTab = true
+```
+
 ### Follow App Claim
 
 [Follow](https://follow.is/) 是一个 RSS 订阅工具，作为博客创作者，在 Follow 中 Claim 自己的博客可以接收博客读者通过 Follow 提供的 $POWER 打赏。对此我曾经写过一篇 [文章](https://rokcso.com/p/follow-claim-feed/) 介绍如何在 Follow 中 Claim 自己的博客。
@@ -112,7 +164,7 @@
 而 hugo-bearneo 原生支持了我文章中提到的「方案三：RSS Tag」，只需要在 Hugo 博客配置文件 `hugo.toml` 中添加如下配置：
 
 ```toml
-[params]
+[params.RSS]
     followFeedId = "00000000000000000"
     followUserId = "00000000000000000"
 ```

@@ -17,12 +17,15 @@ Transplanted from [Hugo Bear Blog][hugo-bearblog], because the original author c
 
 - [✨ Features](#-features)
 - [🐻 Demo](#-demo)
+- [🚀 Quick start](#-quick-start)
 - [📑 User Manual](#-user-manual)
-  - [Upvote post](#upvote-post)
+  - [Upvote posts](#upvote-posts)
   - [Search post](#search-post)
   - [Post list page grouped by year](#post-list-page-grouped-by-year)
   - [Table of contents](#table-of-contents)
   - [Image zoom](#image-zoom)
+  - [Mermaid diagrams](#mermaid-diagrams)
+  - [External links](#external-links)
   - [Follow App Claim](#follow-app-claim)
 - [🎁 Acknowledgments](#-acknowledgments)
 - [©️ License](#️-license)
@@ -31,11 +34,13 @@ Transplanted from [Hugo Bear Blog][hugo-bearblog], because the original author c
 
 Based on [Hugo Bear Blog][hugo-bearblog], the following features have been added:
 
-- [x] Upvote post (Highlight feature 👍, Replicated from Bear Blog)
+- [x] Upvote posts (Highlight feature 👍, inspired by Bear Blog and powered by Kudos)
 - [x] Search post
 - [x] Post list page grouped by year
 - [x] Table of contents
 - [x] Image zoom
+- [x] Mermaid diagrams
+- [x] External link handling
 - [x] Follow App Claim
 
 There are still some optimization items:
@@ -49,23 +54,45 @@ There are still some optimization items:
 
 For a current & working demo of this theme, please check out [https://rokcso.com/][rokcso-blog] 🎯.
 
+## 🚀 Quick start
+
+This theme requires Hugo v0.110.0 or later. From the root of your Hugo site, clone the theme into the `themes` directory:
+
+```bash
+git clone https://github.com/rokcso/hugo-bearneo.git themes/hugo-bearneo
+```
+
+Add the theme name to your site's `hugo.toml`:
+
+```toml
+theme = "hugo-bearneo"
+```
+
+Start the local server:
+
+```bash
+hugo server
+```
+
+See the options below to enable features such as post search, table of contents, image zoom, and upvotes.
+
 ## 📑 User Manual
 
-### Upvote post
+### Upvote posts
 
-First, refer to the [README](https://github.com/rokcso/post-upvote-api) documentation of the Post Upvote API to complete the deployment of the backend service.
+This theme provides Bear Blog-style upvotes, powered by [Kudos](https://github.com/puinoib/kudos), a Cloudflare Workers + D1 service. Deploy Kudos first, then configure its URL as the Upvote endpoint.
 
-> Using Cloudflare Workers + KV, deployment is simple and free.
+Kudos associates each upvote count with its page, so changing the site's domain does not reset an article's upvote count.
 
 Then add the following configuration to the Hugo blog configuration file `hugo.toml`:
 
 ```toml
 [params]
     upvote = true
-    upvoteURL = "The domain name of the Worker that was just deployed/"
+    upvoteURL = "https://kudos.example.com"
 ```
 
-Note: The `/` at the end of the URL must be included!
+`upvoteURL` may include or omit a trailing `/`.
 
 ### Search post
 
@@ -105,6 +132,31 @@ Add the following configuration to the Hugo blog configuration file `hugo.toml`:
     imageZoom = true
 ```
 
+### Mermaid diagrams
+
+Set `mermaid: true` in a page's front matter, then use a Mermaid fenced code block in its Markdown content. Mermaid JavaScript loads only on pages that opt in.
+
+````markdown
+---
+mermaid: true
+---
+
+```mermaid
+flowchart LR
+  Reader --> Article
+  Article --> Kudos
+```
+````
+
+### External links
+
+Set this option to open external HTTP(S) links in a new tab. Internal links continue to open in the current tab. External links receive `rel="noopener noreferrer"` in either mode.
+
+```toml
+[params]
+    externalLinksNewTab = true
+```
+
 ### Follow App Claim
 
 [Follow](https://follow.is/) is an RSS subscription tool. As a blog creator, claiming your blog on Follow allows you to receive $POWER tips from blog readers through Follow. I once wrote an [article](https://rokcso.com/p/follow-claim-feed-en/) explaining how to claim your blog on Follow.
@@ -112,7 +164,7 @@ Add the following configuration to the Hugo blog configuration file `hugo.toml`:
 The hugo-bearneo natively supports the "Scheme III: RSS Tag" mentioned in my article. You only need to add the following configuration to the Hugo blog configuration file `hugo.toml`:
 
 ```toml
-[params]
+[params.RSS]
     followFeedId = "00000000000000000"
     followUserId = "00000000000000000"
 ```
