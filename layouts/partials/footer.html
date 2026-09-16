@@ -1,23 +1,23 @@
 {{ if ne .Site.Params.Footer.hideRSSAndEmail true }}
 <!-- Enable RSS and email exists -->
 {{ if and ( ne .Site.Params.RSS.enableRSS false ) .Site.Params.Author.email }}
-Subscribe via <a href="/index.xml">RSS</a> or just <a href="mailto:{{ .Site.Params.Author.email }}">say hello</a>.
+Seguimi via <a href="/index.xml">RSS</a> oppure inviami una <a href="mailto:{{ .Site.Params.Author.email }}">email</a>.
 <br />
 {{ end }}
 <!-- Enable RSS and email does not exists -->
 {{ if and ( ne .Site.Params.RSS.enableRSS false ) (not .Site.Params.Author.email) }}
-Subscribe via <a href="/index.xml">RSS</a>.
+Seguimi via <a href="/index.xml">RSS</a>.
 <br />
 {{ end }}
 <!-- Do not enable RSS and email exists -->
 {{ if and ( ne .Site.Params.RSS.enableRSS true ) .Site.Params.Author.email }}
-Say hello via <a href="mailto:{{ .Site.Params.Author.email }}">email</a>.
+Contattami via <a href="mailto:{{ .Site.Params.Author.email }}">email</a>.
 <br />
 {{ end }}
 {{ end }}
 
 <!-- Made with line -->
-{{ if ne .Site.Params.Footer.hideMadeWithLine true }}Made with
+{{ if ne .Site.Params.Footer.hideMadeWithLine true }}Fatto con
 <a href="https://github.com/rokcso/hugo-bearneo/">Hugo Bear Neo</a>.
 <br />
 {{ end }}
