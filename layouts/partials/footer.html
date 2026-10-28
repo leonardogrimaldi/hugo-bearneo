@@ -1,4 +1,8 @@
 {{ if ne .Site.Params.Footer.hideRSSAndEmail true }}
+{{- /* author may be a string (name only) or a table */}}
+{{ $author := .Site.Params.Author }}
+{{ $authorEmail := "" }}
+{{ if reflect.IsMap $author }}{{ $authorEmail = $author.email }}{{ end }}
 <!-- Enable RSS and email exists -->
 {{ if and ( ne .Site.Params.RSS.enableRSS false ) .Site.Params.Author.email }}
 Seguimi via <a href="/index.xml">RSS</a> oppure inviami una <a href="mailto:{{ .Site.Params.Author.email }}">email</a>.
